@@ -7,15 +7,24 @@ public class Employee {
     private String position; // Подразделение
     private String op; // ОП
     private Integer jobHoursTabel; // Отработано часов за месяц в табеле
+    private Integer jobHoursGPH; // Отработано часов за месяц по договору ГПХ
     private Integer jobHoursCheck; // Отработано часов по нарядам согласно чек-листам
+    private Integer jobHoursCheckGPH; // Отработано часов по нарядам согласно чек-листам по договору ГПХ
     private Integer zpPlan; // плановый уровень ЗП за полный месяц
+    private Integer zpPlanGPH; // Уровень ЗП по договору ГПХ
     private Integer zpTabel; // ЗП за отработанное время по табелю
+    private Integer zpTabelGPH; // ЗП за отработанное время по договору ГПХ
     private Double bonus; // % премии работника за полный месяц
+    private int rowsCounter; // счетчик строк для вычисления среднего значения
     private Integer brigadeBonus; // Премия работников с учетом выработки бригады
+    private Integer brigadeBonusGPH; // Премия работников с учетом выработки бригады по договору ГПХ
+    private Integer sumBonus; // ИТОГО премия работника с учетом выработки бригады
     private String brigadir; // ФИО бригадира - % выработки по бригаде
     private Double personalOutput; // Выработка индивидуальная
     private String job; // Вид работы
     private String organization; // Организация
+    private String fireDate; //Дата увольнения
+    private String vecheroffka; //Снятие за вечеровки
 
     public Employee() {
     }
@@ -68,12 +77,28 @@ public class Employee {
         this.jobHoursTabel = jobHoursTabel;
     }
 
+    public Integer getJobHoursGPH() {
+        return jobHoursGPH;
+    }
+
+    public void setJobHoursGPH(Integer jobHoursGPH) {
+        this.jobHoursGPH = jobHoursGPH;
+    }
+
     public Integer getJobHoursCheck() {
         return jobHoursCheck;
     }
 
     public void setJobHoursCheck(Integer jobHoursCheck) {
         this.jobHoursCheck = jobHoursCheck;
+    }
+
+    public Integer getJobHoursCheckGPH() {
+        return jobHoursCheckGPH;
+    }
+
+    public void setJobHoursCheckGPH(Integer jobHoursCheckGPH) {
+        this.jobHoursCheckGPH = jobHoursCheckGPH;
     }
 
     public Integer getZpPlan() {
@@ -84,12 +109,28 @@ public class Employee {
         this.zpPlan = zpPlan;
     }
 
+    public Integer getZpPlanGPH() {
+        return zpPlanGPH;
+    }
+
+    public void setZpPlanGPH(Integer zpPlanGPH) {
+        this.zpPlanGPH = zpPlanGPH;
+    }
+
     public Integer getZpTabel() {
         return zpTabel;
     }
 
     public void setZpTabel(Integer zpTabel) {
         this.zpTabel = zpTabel;
+    }
+
+    public Integer getZpTabelGPH() {
+        return zpTabelGPH;
+    }
+
+    public void setZpTabelGPH(Integer zpTabelGPH) {
+        this.zpTabelGPH = zpTabelGPH;
     }
 
     public Double getBonus() {
@@ -100,12 +141,36 @@ public class Employee {
         this.bonus = bonus;
     }
 
+    public int getRowsCounter() {
+        return rowsCounter;
+    }
+
+    public void setRowsCounter(int rowsCounter) {
+        this.rowsCounter = rowsCounter;
+    }
+
     public Integer getBrigadeBonus() {
         return brigadeBonus;
     }
 
     public void setBrigadeBonus(Integer brigadeBonus) {
         this.brigadeBonus = brigadeBonus;
+    }
+
+    public Integer getBrigadeBonusGPH() {
+        return brigadeBonusGPH;
+    }
+
+    public void setBrigadeBonusGPH(Integer brigadeBonusGPH) {
+        this.brigadeBonusGPH = brigadeBonusGPH;
+    }
+
+    public Integer getSumBonus() {
+        return sumBonus;
+    }
+
+    public void setSumBonus(Integer sumBonus) {
+        this.sumBonus = sumBonus;
     }
 
     public String getBrigadir() {
@@ -140,6 +205,21 @@ public class Employee {
         this.organization = organization;
     }
 
+    public String getFireDate() {
+        return fireDate;
+    }
+
+    public void setFireDate(String fireDate) {
+        this.fireDate = fireDate;
+    }
+
+    public String getVecheroffka() {
+        return vecheroffka;
+    }
+
+    public void setVecheroffka(String vecheroffka) {
+        this.vecheroffka = vecheroffka;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -164,14 +244,22 @@ public class Employee {
                 ";" + position +
                 ";" + op +
                 ";" + jobHoursTabel +
+                ";" + jobHoursGPH +
                 ";" + jobHoursCheck +
+                ";" + jobHoursCheckGPH +
                 ";" + zpPlan +
+                ";" + zpPlanGPH +
                 ";" + zpTabel +
+                ";" + zpTabelGPH +
                 ";" + bonus.intValue() + "%" +
                 ";" + brigadeBonus +
+                ";" + brigadeBonusGPH +
+                ";" + sumBonus +
                 ";" + brigadir +
                 ";" + personalOutput.intValue() + "%" +
                 ";" + job +
-                ";" + organization + '\n';
+                ";" + organization +
+                ";" + fireDate +
+                ";" + vecheroffka + '\n';
     }
 }
