@@ -1,6 +1,8 @@
 package ru.narod.trollegon;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -30,15 +32,16 @@ public class Main {
                 }
             });
         saveEmployees(employees.iterator());
+        PressAnyKey();
     }
 
     //Объединяет две записи по работнику в соответствии с заданными правилами
     private static void sumEmployee(Employee employee, Employee stored) {
         if (stored.equals(employee)) {
             //складываем Отработанно часов по нарядам
-            stored.setJobHoursCheck(stored.getJobHoursCheck() + employee.getJobHoursCheck());
+            stored.setJobHoursCheck(stored.getJobHoursCheck().add(employee.getJobHoursCheck()));
             //складываем Отработанно часов по нарядам по договору ГПХ
-            stored.setJobHoursCheckGPH(stored.getJobHoursCheckGPH() + employee.getJobHoursCheckGPH());
+            stored.setJobHoursCheckGPH(stored.getJobHoursCheckGPH().add(employee.getJobHoursCheckGPH()));
             //ищем среднее % премии работнка за месяц
             int rowCounter = stored.getRowsCounter();
             stored.setBonus(countAVG(employee.getBonus(), stored.getBonus(), rowCounter));
@@ -65,6 +68,7 @@ public class Main {
         }
     }
 
+    //Метод для подсчета среднего
     private static Double countAVG(Double employee, Double stored, int counter) {
         return (stored*counter + employee)/++counter;
     }
@@ -79,5 +83,15 @@ public class Main {
         writer.write(stringBuilder.toString());
         writer.flush();
         writer.close();
+    }
+
+    private static void PressAnyKey() {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Processed. Press ENTER to continue...");
+        try {
+            input.readLine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

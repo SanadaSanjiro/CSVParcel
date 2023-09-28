@@ -1,15 +1,19 @@
 package ru.narod.trollegon;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 public class Employee {
     private String tabNum; // табельный номер
     private String name; // ФИО
     private String profession; // Должность
     private String position; // Подразделение
     private String op; // ОП
-    private Integer jobHoursTabel; // Отработано часов за месяц в табеле
-    private Integer jobHoursGPH; // Отработано часов за месяц по договору ГПХ
-    private Integer jobHoursCheck; // Отработано часов по нарядам согласно чек-листам
-    private Integer jobHoursCheckGPH; // Отработано часов по нарядам согласно чек-листам по договору ГПХ
+    private BigDecimal jobHoursTabel; // Отработано часов за месяц в табеле
+    private BigDecimal jobHoursGPH; // Отработано часов за месяц по договору ГПХ
+    private BigDecimal jobHoursCheck; // Отработано часов по нарядам согласно чек-листам
+    private BigDecimal jobHoursCheckGPH; // Отработано часов по нарядам согласно чек-листам по договору ГПХ
     private Integer zpPlan; // плановый уровень ЗП за полный месяц
     private Integer zpPlanGPH; // Уровень ЗП по договору ГПХ
     private Integer zpTabel; // ЗП за отработанное время по табелю
@@ -69,35 +73,35 @@ public class Employee {
         this.op = op;
     }
 
-    public Integer getJobHoursTabel() {
+    public BigDecimal getJobHoursTabel() {
         return jobHoursTabel;
     }
 
-    public void setJobHoursTabel(Integer jobHoursTabel) {
+    public void setJobHoursTabel(BigDecimal jobHoursTabel) {
         this.jobHoursTabel = jobHoursTabel;
     }
 
-    public Integer getJobHoursGPH() {
+    public BigDecimal getJobHoursGPH() {
         return jobHoursGPH;
     }
 
-    public void setJobHoursGPH(Integer jobHoursGPH) {
+    public void setJobHoursGPH(BigDecimal jobHoursGPH) {
         this.jobHoursGPH = jobHoursGPH;
     }
 
-    public Integer getJobHoursCheck() {
+    public BigDecimal getJobHoursCheck() {
         return jobHoursCheck;
     }
 
-    public void setJobHoursCheck(Integer jobHoursCheck) {
+    public void setJobHoursCheck(BigDecimal jobHoursCheck) {
         this.jobHoursCheck = jobHoursCheck;
     }
 
-    public Integer getJobHoursCheckGPH() {
+    public BigDecimal getJobHoursCheckGPH() {
         return jobHoursCheckGPH;
     }
 
-    public void setJobHoursCheckGPH(Integer jobHoursCheckGPH) {
+    public void setJobHoursCheckGPH(BigDecimal jobHoursCheckGPH) {
         this.jobHoursCheckGPH = jobHoursCheckGPH;
     }
 
@@ -238,15 +242,16 @@ public class Employee {
 
     @Override
     public String toString() {
+        MathContext mc = new MathContext(1, RoundingMode.HALF_UP);
         return  ";"+tabNum +
                 ";" + name +
                 ";" + profession +
                 ";" + position +
                 ";" + op +
-                ";" + jobHoursTabel +
-                ";" + jobHoursGPH +
-                ";" + jobHoursCheck +
-                ";" + jobHoursCheckGPH +
+                ";" + jobHoursTabel.round(mc).intValue() +
+                ";" + jobHoursGPH.round(mc).intValue() +
+                ";" + jobHoursCheck.round(mc).intValue() +
+                ";" + jobHoursCheckGPH.round(mc).intValue() +
                 ";" + zpPlan +
                 ";" + zpPlanGPH +
                 ";" + zpTabel +
@@ -258,8 +263,8 @@ public class Employee {
                 ";" + brigadir +
                 ";" + personalOutput.intValue() + "%" +
                 ";" + job +
-                ";" + organization +
-                ";" + fireDate +
-                ";" + vecheroffka + '\n';
+                ";" + organization + '\n';
+                //";" + fireDate +
+                //";" + vecheroffka + '\n';
     }
 }

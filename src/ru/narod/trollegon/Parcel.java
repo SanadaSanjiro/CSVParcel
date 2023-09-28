@@ -1,6 +1,7 @@
 package ru.narod.trollegon;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,13 +25,13 @@ public class Parcel {
         employee.setPosition(strings[column++]); //Подразделение
         employee.setOp(strings[column++]); //ОП
         //Отработано часов за месяц
-        employee.setJobHoursTabel(parseInteger(strings[column++]));
+        employee.setJobHoursTabel(parceBigDecimal(strings[column++]));
         //Отработано по договору ГПХ
-        employee.setJobHoursGPH(parseInteger(strings[column++]));
+        employee.setJobHoursGPH(parceBigDecimal(strings[column++]));
         //Отработано часов по нарядам
-        employee.setJobHoursCheck(parseInteger(strings[column++]));
+        employee.setJobHoursCheck(parceBigDecimal(strings[column++]));
         //Отработано по чек-листам по договору ГПХ
-        employee.setJobHoursCheckGPH(parseInteger(strings[column++]));
+        employee.setJobHoursCheckGPH(parceBigDecimal(strings[column++]));
         //Плановый уровень ЗП за полный месяц
         employee.setZpPlan(parseInteger(strings[column++]));
         //Уровень ЗП по договору ГПХ
@@ -58,14 +59,20 @@ public class Parcel {
         //Организация
         employee.setOrganization(strings[column++]);
         //Дата увольнения
-        employee.setFireDate(strings[column++]);
+        //employee.setFireDate(strings[column++]);
         //Снятие за вечеровки
-        employee.setVecheroffka(strings[column++]);
+        //employee.setVecheroffka(strings[column++]);
         return employee;
     }
 
     private static Integer parseInteger(String string) {
-        return Integer.parseInt(string.replace(" ", ""));
+        return string.equals("")||string.trim().equals("-") ? 0 :
+        Integer.parseInt(string.replace(" ", ""));
+    }
+
+    private static BigDecimal parceBigDecimal(String string) {
+        return string.equals("")||string.equals("-") ? BigDecimal.ZERO :
+                BigDecimal.valueOf(Double.parseDouble(string.replace(',', '.')));
     }
 
     private static Double parsePercents(String string) {
