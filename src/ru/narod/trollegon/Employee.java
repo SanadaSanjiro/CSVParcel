@@ -248,10 +248,10 @@ public class Employee {
                 ";" + profession +
                 ";" + position +
                 ";" + op +
-                ";" + jobHoursTabel.round(mc).intValue() +
-                ";" + jobHoursGPH.round(mc).intValue() +
-                ";" + jobHoursCheck.round(mc).intValue() +
-                ";" + jobHoursCheckGPH.round(mc).intValue() +
+                ";" + jobHoursTabel.intValue() +
+                ";" + jobHoursGPH.intValue() +
+                ";" + jobHoursCheck.intValue() +
+                ";" + jobHoursCheckGPH.intValue() +
                 ";" + zpPlan +
                 ";" + zpPlanGPH +
                 ";" + zpTabel +
